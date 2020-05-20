@@ -17,9 +17,9 @@ class Auth extends CI_Controller
         if ($this->form_validation->run() == false) {
 
             $data['title'] = 'Login Page';
-            $this->load->view('templates/header', $data);
+            $this->load->view('templates/auth_header', $data);
             $this->load->view('auth/login');
-            $this->load->view('templates/footer');
+            $this->load->view('templates/auth_footer');
         } else {
             // jika valid success
             $this->_login();
@@ -44,7 +44,11 @@ class Auth extends CI_Controller
                         'role_id' => $user['role_id']
                     ];
                     $this->session->set_userdata($data);
-                    redirect('user');
+                    if ($user['role_id'] == 1) {
+                        redirect('admin');
+                    } else {
+                        redirect('user');
+                    }
                 } else {
                     // jika password login salah
                     $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
@@ -82,9 +86,9 @@ class Auth extends CI_Controller
 
             $data['title'] = 'User Registration';
 
-            $this->load->view('templates/header', $data);
+            $this->load->view('templates/auth_header', $data);
             $this->load->view('auth/registration');
-            $this->load->view('templates/footer');
+            $this->load->view('templates/auth_footer');
         } else {
             $data = [
                 'name' =>  htmlspecialchars($this->input->post('name', true)),
