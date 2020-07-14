@@ -116,4 +116,9 @@ class Auth extends CI_Controller
             You have been Logged out </div>');
         redirect('auth');
     }
+
+    public function blocked()
+    {
+        $this->load->view('auth/blocked');
+    }
 }
