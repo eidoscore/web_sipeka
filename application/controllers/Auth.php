@@ -11,6 +11,12 @@ class Auth extends CI_Controller
 
     public function index()
     {
+
+        // menambahkan method methode login agar tidak bisa akses auth kembali
+        if ($this->session->userdata('email')) {
+            redirect('user');
+        }
+
         $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
         $this->form_validation->set_rules('password', 'Password', 'trim|required');
 
