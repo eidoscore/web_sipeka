@@ -89,10 +89,6 @@
                     </div>
 
                     <div class="form-group">
-                        <input type="text" class="form-control" id="title" name="title" placeholder="Submenu Title">
-                    </div>
-
-                    <div class="form-group">
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="1" name="is_active" id="is_active" checked>
                             <label class="form-check-label" for="is_active">
