@@ -48,16 +48,19 @@
                                 <div class="card m-10 align-right mb-5 border-3" style="width: 720px;">
                                     <div class="row no-gutters">
                                         <div class="col-12">
-                                            <img src="<?= base_url('assets/img/profile/') . $ktb->image ?>" style="width: 240px" class="card-img mt-5" >
+                                            <img src="<?= base_url('assets/img/profile/') . $ktb->image ?>" class="rounded-square mt-5 mb-5" style="widht: 100px; height:150px">
+
+                                            <div class="col-8" align="left">
                                             <div class="card-body">                                                
-                                                <label>EMAIL : <?= $ktb->email ?></label><br>
-                                                <label>NAMA : <?= $ktb->name ?></label><br>
-                                                <label>NIK : <?= $ktb->nip ?></label><br>
-                                                <label>JABATAN : <?= $ktb->jabatan ?></label><br>
-                                                <label>TAHUN MASUK : <?= $ktb->tahun_masuk ?></label><br>
-                                                <label>NO TELEPON : <?= $ktb->no_hp ?></label><br>
+                                                <label>EMAIL        : <?= $ktb->email ?></label><br>
+                                                <label>NAMA         : <?= $ktb->name ?></label><br>
+                                                <label>NIK          : <?= $ktb->nip ?></label><br>
+                                                <label>JABATAN      : <?= $ktb->jabatan ?></label><br>
+                                                <label>TAHUN MASUK  : <?= $ktb->tahun_masuk ?></label><br>
+                                                <label>NO TELEPON   : <?= $ktb->no_hp ?></label><br>
 
                                             </div>
+                                        </div>
                                         </div>
                                         <div class=""><br>
 

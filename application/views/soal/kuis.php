@@ -66,7 +66,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="id_kuis">Id Kuis</label>
-                        <input type="text" class="form-control" value="<?= date('Ydmih'); ?>" id="id_kuis" name="id_kuis" readonly>
+                        <input type="text" class="form-control" value="<?= date('Ydmhis'); ?>" id="id_kuis" name="id_kuis" readonly>
                     </div>
                     <div class="form-group">
                         <label class="col-form-label">Tanggal Kuis</label>

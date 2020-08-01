@@ -25,7 +25,8 @@ class Penilaian_model extends CI_Model
         return $this->db->distinct()
             ->select('tbl_quesioner.id as id_kuesioner,tbl_quesioner.tanggal as tanggal_kuesioner, tbl_quesioner.*,tbl_jawaban.*')->from('tbl_quesioner')
             ->join('tbl_jawaban', 'tbl_jawaban.id_kuis=tbl_quesioner.id', 'left')
-            ->where("tbl_jawaban.email='$email'")
+            ->join('tbl_penilaian', 'tbl_jawaban.id=tbl_penilaian.id_jawaban', 'left')
+            ->where("tbl_jawaban.email='$email' AND tbl_penilaian.keterangan is NULL")
             ->get()
             ->result();
     }

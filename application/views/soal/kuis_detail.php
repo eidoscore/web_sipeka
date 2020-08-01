@@ -29,8 +29,13 @@
             <?php endif; ?>
 
             <?= $this->session->flashdata('message'); ?>
-
-            <a href="" class="btn btn-primary mb-3" data-toggle="modal" data-target="#newkuis">Add Soal</a>
+            <?php $no = 1;
+            foreach ($list_kuis as $lk) :
+                $no++;
+            endforeach; ?>
+            <?php if ($no <= 5) { ?>
+                <a href="" class="btn btn-primary mb-3" data-toggle="modal" data-target="#newkuis">Add Soal</a>
+            <?php } ?>
             <table class="table table-hover" id="table1">
                 <thead>
                     <tr>
@@ -48,9 +53,7 @@
                             <td><?= $lk->id_kuis; ?></td>
                             <td><?= $lk->soal; ?></td>
                             <td>
-                                <a href="<?php base_url(); ?>detail_kuis/<?php echo $lk->id; ?>" class="badge badge-primary">Detail</a>
-                                <a href="" data-toggle="modal" data-target="#editSoal<?= $lk->id; ?>" class="badge badge-success">Edit</a>
-                                <a href="<?php base_url(); ?>hapuskuis/<?php echo $lk->id; ?>" class="badge badge-danger" onclick="return confirm('Yakin.?');">Delete</a>
+                                <a href="<?php base_url(); ?>hapusdetailsoal/<?php echo $lk->id; ?>" class="badge badge-danger" onclick="return confirm('Yakin.?');">Delete</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -78,7 +81,7 @@
             </div>
             <form action="<?= base_url('soal/detail_kuis/' . $kuesioner['id']); ?>" method="post">
                 <div class="modal-body">
-                    <input type="hidden" name="id" id="id" value="<?= date('Ydmhi') ?>">
+                    <input type="hidden" name="id" id="id" value="<?= date('Ydmhis') ?>">
                     <input type="hidden" name="id_kuis" id="id_kuis" value="<?= $kuesioner['id']; ?>">
 
                     <div class="form-group">

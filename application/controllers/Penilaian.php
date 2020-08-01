@@ -62,7 +62,7 @@ class Penilaian extends CI_Controller
 
         $this->form_validation->set_rules('id_penilaian', 'Id_penilaian', 'required');
 
-        $this->form_validation->set_rules('bulan', 'Nilai', 'required');
+        $this->form_validation->set_rules('nilai', 'Nilai', 'required');
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
@@ -74,7 +74,8 @@ class Penilaian extends CI_Controller
             $data_nilai = [
                 'id_penilaian'  => $this->input->post('id_penilaian'),
                 'id_jawaban'    => $this->input->post('id_jawaban'),
-                'nilai'         => $this->input->post('nilai')
+                'nilai'         => $this->input->post('nilai'),
+                'keterangan'    => "Sudah di jawab"
             ];
 
             $this->Penilaian_model->tambahNilai($data_nilai);
