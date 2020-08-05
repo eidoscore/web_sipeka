@@ -13,4 +13,16 @@ class Menu_model extends CI_Model
 
         return $this->db->query($query)->result_array();
     }
+
+    public function hapusDataMenu($id)
+    {
+        $this->db->where('id', $id);
+        $this->db->delete('user_menu');
+    }
+
+    public function hapusDataSubmenu($id)
+    {
+        $this->db->where('id', $id);
+        $this->db->delete('user_sub_menu');
+    }
 }

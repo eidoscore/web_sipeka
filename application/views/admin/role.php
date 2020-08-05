@@ -17,7 +17,7 @@
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Menu</th>
+                        <th scope="col">Role</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
@@ -29,8 +29,8 @@
                             <td><?= $r['role']; ?></td>
                             <td>
                                 <a href="<?= base_url('admin/roleaccess/') . $r['id']; ?>" class="badge badge-warning">Access</a>
-                                <a href="" data-toggle="modal" data-target="#editnewMenuModal" class="badge badge-success">Edit</a>
-                                <a href="" class="badge badge-danger">Delete</a>
+                                <a href="" data-toggle="modal" data-target="#editroleModal<?= $r['id']; ?>" class="badge badge-success">Edit</a>
+                                <a href="<?php base_url(); ?>hapusRole/<?php echo $r['id']; ?>" class="badge badge-danger" onclick="return confirm('Yakin.?');">Delete</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -55,7 +55,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="<?= base_url('admin/role'); ?>" method="post">
+            <form action="<?= base_url('admin/addRole'); ?>" method="post">
                 <div class="modal-body">
                     <div class="form-group">
                         <input type="text" class="form-control" id="role" name="role" placeholder="Role Name">
@@ -69,28 +69,34 @@
         </div>
     </div>
 </div>
+<!-- END Modal Add Role -->
 
-<!-- Modal edit Menu-->
-<!-- <div class="modal fade" id="editnewMenuModal" tabindex="-1" role="dialog" aria-labelledby="editnewMenuModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="editnewMenuModalLabel">Edit Menu</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form action="<?= base_url('menu'); ?>" method="post">
-                <div class="modal-body">
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="menu" name="menu" placeholder="Menu Name" value="">
+<!-- Modal Edit Role-->
+<?php $no = 0;
+foreach ($role as $r) : $no++; ?>
+    <div class="modal fade" id="editroleModal<?= $r['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="editroleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editroleModalLabel">Edit Role</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="<?= base_url('admin/editRole'); ?>" method="post">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <input type="hidden" value="<?= $r['id']; ?>" name="id" id="id">
+                            <input type="text" class="form-control" id="role" name="role" placeholder="Role Name" value="<?= $r['role']; ?>">
+                        </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Edit</button>
-                </div>
-            </form>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Edit</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-</div> -->
+<?php endforeach; ?>
+<!-- END Modal Edit Role -->

@@ -28,8 +28,8 @@
                             <th scope="row"><?= $i++; ?></th>
                             <td><?= $m['menu']; ?></td>
                             <td>
-                                <a href="" data-toggle="modal" data-target="#editnewMenuModal" class="badge badge-success">Edit</a>
-                                <a href="" class="badge badge-danger">Delete</a>
+                                <a href="" data-toggle="modal" data-target="#editMenuModal<?= $m['id']; ?>" class="badge badge-success">Edit</a>
+                                <a href="<?php base_url(); ?>menu/hapusMenu/<?php echo $m['id']; ?>" class="badge badge-danger" onclick="return confirm('Yakin.?');">Delete</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -70,26 +70,30 @@
 </div>
 
 <!-- Modal edit Menu-->
-<div class="modal fade" id="editnewMenuModal" tabindex="-1" role="dialog" aria-labelledby="editnewMenuModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="editnewMenuModalLabel">Edit Menu</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form action="<?= base_url('menu'); ?>" method="post">
-                <div class="modal-body">
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="menu" name="menu" placeholder="Menu Name" value="">
+<?php $no = 0;
+foreach ($menu as $m) : $no++; ?>
+    <div class="modal fade" id="editMenuModal<?= $m['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="editMenuModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editMenuModalLabel">Edit Menu</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="<?= base_url('menu/editMenu'); ?>" method="post">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <input type="hidden" value="<?= $m['id']; ?>" name="id" id="id">
+                            <input type="text" class="form-control" id="menu" name="menu" placeholder="Menu Name" value="<?= $m['menu']; ?>">
+                        </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Edit</button>
-                </div>
-            </form>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Edit</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-</div>
+<?php endforeach; ?>
