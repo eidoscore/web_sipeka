@@ -35,8 +35,8 @@
                             <td><?= $s['soal']; ?></td>
                             <td><?= $s['date_created']; ?></td>
                             <td>
-                                <a href="" data-toggle="modal" data-target="#editSubMenuModal<?= $s['id']; ?>" class="badge badge-success">Edit</a>
-                                <a href="<?php base_url(); ?>hapusSubMenu/<?php echo $s['id']; ?>" class="badge badge-danger" onclick="return confirm('Yakin.?');">Delete</a>
+                                <a href="" data-toggle="modal" data-target="#editSoal<?= $s['id']; ?>" class="badge badge-success">Edit</a>
+                                <a href="<?php base_url(); ?>soal/hapus/<?php echo $s['id']; ?>" class="badge badge-danger" onclick="return confirm('Yakin.?');">Delete</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -90,3 +90,43 @@
 
 
 <!-- End ADD Menu-->
+
+<!-- Modal Edit -->
+<?php $no = 0;
+foreach ($soal as $s) : $no++ ?>
+    <div class="modal fade" id="editSoal<?= $s['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="editSoalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editSoalLabel">Edit Soal</h5>
+                    <button type="button" class="close" data-disiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="<?= base_url('soal/edit'); ?>" method="post">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="id_soal">Id Soal</label>
+                            <input type="text" class="form-control" value="<?= $s['id_soal']; ?>" id="id_soal" name="id_soal" readonly>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="soal">Soal</label>
+                            <textarea type="text" class="form-control mb-3" id="soal" name="soal" placeholder="Input soal"><?= $s['soal']; ?></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="hidden" class="form-control" id="date" name="date" placeholder="Submenu icon">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Edit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+<?php endforeach; ?>
+
+<!-- End Edit Menu--> */

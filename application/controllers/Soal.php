@@ -13,7 +13,7 @@ class Soal extends CI_Controller
 
     public function index()
     {
-        $data['title'] = 'Submenu Management';
+        $data['title'] = 'List Soal';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
         $this->load->model('Soal_model', 'menu');
@@ -43,22 +43,41 @@ class Soal extends CI_Controller
         }
     }
 
-    // public function add()
-    // {
+    public function edit()
+    {
+        $data['title'] = 'List Soal';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+        $this->load->model('Soal_model', 'menu');
+
+        $data['soal'] = $this->db->get('tbl_soal')->result_array();
+
+        $this->form_validation->set_rules('soal', 'Soal', 'required');
 
 
-    //         $id = $this->input->post('id');
-    //         $soal = $this->input->post('soal');
+        if ($this->form_validation->run() == false) {
 
-    //         $hari       = $this->input->post('hari');
-    //         $bulan      = $this->input->post('bulan');
-    //         $tahun      = $this->input->post('tahun');
-    //         $tanggal  = $tahun . "-" . $bulan . "-" . $hari;
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+            $this->load->view('soal/index', $data);
+            $this->load->view('templates/footer');
+        } else {
+            $data = [
+                'id_soal' => $this->input->post('id_soal'),
+                'soal' => $this->input->post('soal')
+            ];
 
-    //         $data_soal = array(
-    //             'id'    => $id,
-    //             'soal' =>  $soal,
-    //             'date_created' => $tanggal()
+            $this->Soal_model->editSoal($data);
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Soal Edited</div>');
+            redirect('soal/index');
+        }
+    }
 
-    // }
+    public function hapus($id)
+    {
+        $this->Soal_model->hapusSoal($id);
+        $this->session->set_flashdata('flash', 'DiHapus');
+        redirect('soal');
+    }
 }
