@@ -2,7 +2,9 @@
     <footer class="sticky-footer bg-white">
         <div class="container my-auto">
             <div class="copyright text-center my-auto">
-                <span>Copyright &copy; eidos Admin <?= date('Y') ?></span>
+
+                <span> Made With <i class="fas fa-heart"></i> </span>
+                <span>Copyright &copy; PT. Hasna Setya Negara <?= date('Y') ?></span>
             </div>
         </div>
     </footer>

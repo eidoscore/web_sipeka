@@ -80,4 +80,87 @@ class Soal extends CI_Controller
         $this->session->set_flashdata('flash', 'DiHapus');
         redirect('soal');
     }
+
+    public function kuesioner()
+    {
+        $data['title'] = 'List Kuis';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+        $this->load->model('Soal_model', 'menu');
+
+        $data['kuis'] = $this->db->get('tbl_quesioner')->result_array();
+
+        $this->form_validation->set_rules('keterangan', 'Keterangan', 'required');
+
+
+        if ($this->form_validation->run() == false) {
+
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+            $this->load->view('soal/kuis', $data);
+            $this->load->view('templates/footer');
+        } else {
+
+            $hari       = $this->input->post('hari');
+            $bulan      = $this->input->post('bulan');
+            $tahun      = $this->input->post('tahun');
+            $tanggal_kuis  = $tahun . "-" . $bulan . "-" . $hari;
+
+            $data_kuis = [
+                'id' => $this->input->post('id_kuis'),
+                'tanggal' => $tanggal_kuis,
+                'keterangan' => $this->input->post('keterangan')
+            ];
+
+            $this->Soal_model->tambahKuis($data_kuis);
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Kuis Added</div>');
+            redirect('soal/kuesioner');
+        }
+    }
+
+    public function editkuis()
+    {
+        $data['title'] = 'List Kuis';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+        $this->load->model('Soal_model', 'menu');
+
+        $data['kuis'] = $this->db->get('tbl_quesioner')->result_array();
+
+        $this->form_validation->set_rules('keterangan', 'Keterangan', 'required');
+
+
+        if ($this->form_validation->run() == false) {
+
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+            $this->load->view('soal/kuis', $data);
+            $this->load->view('templates/footer');
+        } else {
+
+            $hari       = $this->input->post('hari');
+            $bulan      = $this->input->post('bulan');
+            $tahun      = $this->input->post('tahun');
+            $tanggal_kuis  = $tahun . "-" . $bulan . "-" . $hari;
+
+            $data_kuis = [
+                'id' => $this->input->post('id_kuis'),
+                'tanggal' => $tanggal_kuis,
+                'keterangan' => $this->input->post('keterangan')
+            ];
+
+            $this->Soal_model->editKuis($data_kuis);
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Kuis Edited</div>');
+            redirect('soal/kuesioner');
+        }
+    }
+
+    public function hapuskuis($id)
+    {
+        $this->Soal_model->hapusKuis($id);
+        $this->session->set_flashdata('flash', 'DiHapus');
+        redirect('soal/kuesioner');
+    }
 }

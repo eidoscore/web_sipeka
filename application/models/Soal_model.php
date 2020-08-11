@@ -22,4 +22,23 @@ class Soal_model extends CI_Model
         $this->db->where('id', $id);
         $this->db->delete('tbl_soal');
     }
+
+    public function tambahKuis($data_kuis)
+    {
+        $this->db->insert('tbl_quesioner', $data_kuis);
+    }
+
+    public function editKuis($data_kuis)
+    {
+        $this->db->from('tbl_quesioner');
+        $this->db->where('id', $this->input->post('id_kuis'));
+        $this->db->update('tbl_quesioner', $data_kuis);
+    }
+
+    public function hapusKuis($id)
+    {
+        $this->db->from('tbl_quesioner');
+        $this->db->where('id', $id);
+        $this->db->delete('tbl_quesioner');
+    }
 }
