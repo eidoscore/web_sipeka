@@ -35,6 +35,7 @@
                             <td><?= $ks['tanggal']; ?></td>
                             <td><?= $ks['keterangan']; ?></td>
                             <td>
+                                <a href="<?php base_url(); ?>detail_kuis/<?php echo $ks['id']; ?>" class="badge badge-primary">Detail</a>
                                 <a href="" data-toggle="modal" data-target="#editSoal<?= $ks['id']; ?>" class="badge badge-success">Edit</a>
                                 <a href="<?php base_url(); ?>hapuskuis/<?php echo $ks['id']; ?>" class="badge badge-danger" onclick="return confirm('Yakin.?');">Delete</a>
                             </td>

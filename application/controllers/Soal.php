@@ -163,4 +163,41 @@ class Soal extends CI_Controller
         $this->session->set_flashdata('flash', 'DiHapus');
         redirect('soal/kuesioner');
     }
+
+    public function detail_kuis($id)
+    {
+        $data['title'] = 'Detail Kuis';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+        $data['kuesioner'] = $this->db->get_where('tbl_quesioner', ['id' => $id])->row_array();
+
+        $data['list_kuis'] = $this->Soal_model->getDetailKuis($id);
+
+
+        $data['soal'] = $this->Soal_model->getSoal();
+
+        // $data['kuis_detail'] = $this->Soal_model->getDetailKuis($id);
+
+        $this->form_validation->set_rules('id_soal', 'id_soal', 'required');
+
+
+        if ($this->form_validation->run() == false) {
+
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+            $this->load->view('soal/kuis_detail', $data);
+            $this->load->view('templates/footer');
+        } else {
+            $data = [
+                'id' => $this->input->post('id'),
+                'id_kuis' => $this->input->post('id_kuis'),
+                'id_soal' => $this->input->post('id_soal')
+            ];
+
+            $this->Soal_model->addDetailKuis($data);
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Kuis Added</div>');
+            redirect('soal/detail_kuis/' . $id);
+        }
+    }
 }

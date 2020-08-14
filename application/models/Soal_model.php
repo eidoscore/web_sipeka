@@ -41,4 +41,18 @@ class Soal_model extends CI_Model
         $this->db->where('id', $id);
         $this->db->delete('tbl_quesioner');
     }
+
+    public function getDetailKuis($id)
+    {
+        $this->db->select('tbl_kuis_detail.*, tbl_soal.*');
+        $this->db->from('tbl_kuis_detail');
+        $this->db->join('tbl_soal', 'tbl_kuis_detail.id_soal = tbl_soal.id_soal');
+        $this->db->where('tbl_kuis_detail.id_kuis', $id);
+        return $this->db->get()->result();
+    }
+
+    public function addDetailKuis($data)
+    {
+        $this->db->insert('tbl_kuis_detail', $data);
+    }
 }
