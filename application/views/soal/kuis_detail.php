@@ -46,7 +46,7 @@
                         <tr>
                             <th scope="row"><?= $i++; ?></th>
                             <td><?= $lk->id_kuis; ?></td>
-                            <td><?= $lk->id_soal; ?></td>
+                            <td><?= $lk->soal; ?></td>
                             <td>
                                 <a href="<?php base_url(); ?>detail_kuis/<?php echo $lk->id; ?>" class="badge badge-primary">Detail</a>
                                 <a href="" data-toggle="modal" data-target="#editSoal<?= $lk->id; ?>" class="badge badge-success">Edit</a>

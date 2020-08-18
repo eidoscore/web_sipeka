@@ -55,4 +55,6 @@ class Soal_model extends CI_Model
     {
         $this->db->insert('tbl_kuis_detail', $data);
     }
+
+    
 }
