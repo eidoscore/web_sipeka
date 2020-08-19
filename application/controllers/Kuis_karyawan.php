@@ -20,7 +20,7 @@ class Kuis_karyawan extends CI_Controller
         $hari_ini = date('Y-m-d');
         $hari_ke = date('Y-m-d', strtotime('+6 days', strtotime($hari_ini)));
         $data['list_kuesioner'] = $this->Kuis_karyawan_model->getKuisAktif($hari_ini, $hari_ke);
-        $data['kuesioner_terjawab'] = $this->Kuis_karyawan_model->getKuisUser($hari_ini, $hari_ke);
+        $data['kuesioner_terjawab'] = $this->Kuis_karyawan_model->getKuisUser($hari_ini, $hari_ke, $this->session->userdata('email'));
 
 
         $this->load->view('templates/header', $data);
@@ -40,9 +40,7 @@ class Kuis_karyawan extends CI_Controller
         $data['kuesioner'] = $this->db->get_where('tbl_quesioner', ['id' => $id])->row_array();
 
         $data['soal'] = $this->Soal_model->getDetailKuis($id);
-
-        $total_soal = $this->input->post('total_soal');
-        $this->form_validation->set_rules('id', 'id', 'required');
+git add 
 
         if ($this->form_validation->run() == false) {
 
