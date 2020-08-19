@@ -28,31 +28,20 @@
                 </thead>
                 <tbody>
                     <?php $i = 1; ?>
-                    <?php foreach ($list_kuesioner as $ka) : ?>
+                    <?php foreach ($kuesioner as $ka) : ?>
                         <tr>
                             <th scope="row"><?= $i++; ?></th>
-                            <td><?= $ka->id ?></td>
-                            <td><?= $ka->tanggal ?></td>
+                            <td><?= $ka->id_kuesioner ?></td>
+                            <td><?= $ka->tanggal_kuesioner ?></td>
                             <td><?= $ka->keterangan ?></td>
-                            <?php if ($kuesioner_terjawab == null) { ?>
+                            <?php if ($ka->email == null) { ?>
                                 <td>Belum di Jawab</td>
-                                <td>
-                                    <a href="<?= site_url('kuis_karyawan/jawab/') . $ka->id; ?>" class="badge badge-success">Jawab</a>
-                                </td>
-                            <?php }; ?>
-                            <?php foreach ($kuesioner_terjawab as $kt) : ?>
-                                <?php if ($ka->id == $kt->id_kuesioner) { ?>
-                                    <?php if ($kt->email == $this->session->userdata('email')) { ?>
-                                        <td>Sudah di Jawab</td>
-                                        <td></td>
-                                    <?php } else { ?>
-                                        <td>Belum di Jawab</td>
-                                        <td>
-                                            <a href="<?= site_url('kuis_karyawan/jawab/') . $ka->id; ?>" class="badge badge-success">Jawab</a>
-                                        </td>
-                                    <?php } ?>
-                                <?php } ?>
-                            <?php endforeach; ?>
+                            <?php } else { ?>
+                                <td>Sudah di Jawab</td>
+                            <?php } ?>
+                            <td>
+                                <a href="<?= site_url('penilaian/detail/') . $ka->id_kuesioner; ?>" class="badge badge-success">Nilai</a>
+                            </td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>

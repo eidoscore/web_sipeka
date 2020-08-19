@@ -17,11 +17,19 @@ class Karyawan_model extends CI_Model
             ->result();
     }
 
-    public function editKaryawan($id)
+    public function editUser($id, $data_user)
+    {
+        $this->db->from('user');
+        $this->db->where('id', $id);
+        $this->db->update('user', $data_user);
+    }
+
+
+    public function editKaryawan($id, $data_karyawan)
     {
         $this->db->from('tbl_karyawan');
-        $this->db->where('id', $this->input->post('id'));
-        $this->db->insert('tbl_karyawan', $id);
+        $this->db->where('id', $id);
+        $this->db->update('tbl_karyawan', $data_karyawan);
     }
 
     public function hapusKaryawan($id)

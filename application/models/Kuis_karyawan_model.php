@@ -12,9 +12,19 @@ class Kuis_karyawan_model extends CI_Model
     */
     function getKuisAktif($hari_ini, $hari_ke)
     {
-        return $this->db->select('tbl_quesioner.id as id_kuesioner,tbl_quesioner.tanggal as tanggal_kuesioner, tbl_quesioner.*,tbl_jawaban.*')->from('tbl_quesioner')
-            ->join('tbl_jawaban', 'tbl_jawaban.id_kuis=tbl_quesioner.id', 'left')
+        return $this->db->distinct()
+            ->select('tbl_quesioner.*')->from('tbl_quesioner')
             ->where("tbl_quesioner.tanggal BETWEEN '$hari_ini' AND '$hari_ke'")
+            ->get()
+            ->result();
+    }
+
+    function getKuisUser($hari_ini, $hari_ke, $email)
+    {
+        return $this->db->distinct()
+            ->select('tbl_quesioner.id as id_kuesioner,tbl_quesioner.tanggal as tanggal_kuesioner, tbl_quesioner.*,tbl_jawaban.*')->from('tbl_quesioner')
+            ->join('tbl_jawaban', 'tbl_jawaban.id_kuis=tbl_quesioner.id', 'left')
+            ->where("tbl_quesioner.tanggal BETWEEN '$hari_ini' AND '$hari_ke' AND tbl_jawaban.email='$email'")
             ->get()
             ->result();
     }

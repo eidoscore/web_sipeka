@@ -83,11 +83,11 @@ class Karyawan extends CI_Controller
 
         $data['menu'] = $this->db->get('user_menu')->result_array();
 
-        $data['user'] = $this->db->get_where('user', ['id' => $id])->row_array();
+        $data['karyawan'] = $this->db->get_where('user', ['id' => $id])->row_array();
         //user untuk get nama sama email berdasarkan id
-        $data['karyawan'] = $this->db->get_where('tbl_karyawan', ['id' => $id])->row_array();
+        $data['karyawan2'] = $this->db->get_where('tbl_karyawan', ['id' => $id])->row_array();
         //karyawan buat sisanya
-        $this->form_validation->set_rules('nip', 'nip', 'required');
+        $this->form_validation->set_rules('nama', 'Nama', 'required');
 
         if ($this->form_validation->run() == false) {
             $data['title'] = 'Edit Karyawan';
@@ -98,14 +98,10 @@ class Karyawan extends CI_Controller
             $this->load->view('templates/footer');
         } else {
             $data_user = [
-                'id'    => $this->input->post('id'),
                 'name' =>  htmlspecialchars($this->input->post('nama', true)),
                 'email' => htmlspecialchars($this->input->post('email', true)),
                 'image' => 'default.jpg',
-                'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
-                'role_id' => 2,
-                'is_active' => 1,
-                'date_created' => time()
+                'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT)
             ];
 
             $hari       = $this->input->post('hari');
@@ -114,7 +110,6 @@ class Karyawan extends CI_Controller
             $tahun_masuk  = $tahun . "-" . $bulan . "-" . $hari;
 
             $data_karyawan = array(
-                'id'                    => $this->input->post('id'),
                 'nip'                   => $this->input->post('nip'),
                 'alamat'                => $this->input->post('alamat'),
                 'jabatan'               => $this->input->post('jabatan'),
@@ -123,8 +118,8 @@ class Karyawan extends CI_Controller
             );
 
 
-            $this->Auth_model->edit_user($data_user);
-            $this->Karyawan_model->editKaryawan($data_karyawan);
+            $this->Karyawan_model->editUser($this->input->post('id'), $data_user);
+            $this->Karyawan_model->editKaryawan($this->input->post('id'), $data_karyawan);
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">New Karyawan Added</div>');
             redirect('karyawan');
         }

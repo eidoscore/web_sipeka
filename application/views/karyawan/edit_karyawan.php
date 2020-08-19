@@ -8,35 +8,35 @@
             <hr>
             <?= $this->session->flashdata('message'); ?>
             <div class="col-12">
-                <?php echo form_open_multipart('karyawan/edit'); ?>
+                <?php echo form_open_multipart('karyawan/edit/' . $karyawan['id']); ?>
                 <form action="" method="post">
-                    <input type="hidden" value="<?= date('YmdHis'); ?>" id="id" name="id">
+                    <input type="hidden" value="<?= $karyawan['id'] ?>" id="id" name="id">
                     <div class="form-group row">
                         <div class="col-6">
                             <label for="nama">Nama</label>
-                            <input type="text" class="form-control" id="nama" name="nama" value="<?= $user['name']; ?>">
+                            <input type="text" class="form-control" id="nama" name="nama" value="<?= $karyawan['name']; ?>">
                         </div>
                         <div class="col-6">
                             <label for="email">Email address</label>
-                            <input type="email" class="form-control" id="email" name="email" value="<?= $user['email']; ?>">
+                            <input type="email" class="form-control" id="email" name="email" value="<?= $karyawan['email']; ?>">
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <div class="col-6">
                             <label for="nip">NIP Karyawan</label>
-                            <input type="text" class="form-control" id="nip" name="nip" value="<?= $karyawan['nip']; ?>">
+                            <input type="text" class="form-control" id="nip" name="nip" value="<?= $karyawan2['nip']; ?>">
                         </div>
                         <div class=" col-6">
                             <label for="telepon">No Telepon</label>
-                            <input type="text" class="form-control" id="telepon" name="telepon" value="<?= $karyawan['no_hp']; ?>">
+                            <input type="text" class="form-control" id="telepon" name="telepon" value="<?= $karyawan2['no_hp']; ?>">
                         </div>
                     </div>
 
                     <div class=" form-group row">
                         <div class="col-6">
                             <label for="jabatan">Jabatan</label>
-                            <input type="text" class="form-control" id="jabatan" name="jabatan" value="<?= $karyawan['jabatan']; ?>">
+                            <input type="text" class="form-control" id="jabatan" name="jabatan" value="<?= $karyawan2['jabatan']; ?>">
                         </div>
                         <div class="form-group col-md-6">
                             <label class="col-form-label">Tahun Masuk</label>
@@ -77,7 +77,7 @@
                     </div>
                     <div class="form-group">
                         <label for="alamat">Alamat</label>
-                        <textarea type="text" class="form-control col-6" id="alamat" name="alamat"><?= $karyawan['alamat']; ?></textarea>
+                        <textarea type="text" class="form-control col-6" id="alamat" name="alamat"><?= $karyawan2['alamat']; ?></textarea>
                     </div>
                     <div class="form-group row">
                         <div class="col-6">
@@ -89,8 +89,9 @@
                             <input type="password" class="form-control" id="password2" name="password2">
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary mt-4 mb-4 mr-3">Submit</button>
-                    <button type="submit" class="btn btn-danger mt-4 mb-4">Cancel</button>
+
+                    <button type="submit" class="btn btn-primary mt-4 mb-4">Submit</button>
+                    <a href="<?= base_url('karyawan'); ?>" class="btn btn-danger mt-4 mb-4 mr-3">Cancel</a>
 
                 </form>
             </div>

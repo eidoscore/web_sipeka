@@ -19,7 +19,9 @@ class Kuis_karyawan extends CI_Controller
         date_default_timezone_set("Asia/Jakarta");
         $hari_ini = date('Y-m-d');
         $hari_ke = date('Y-m-d', strtotime('+6 days', strtotime($hari_ini)));
-        $data['kuesioner'] = $this->Kuis_karyawan_model->getKuisAktif($hari_ini, $hari_ke);
+        $data['list_kuesioner'] = $this->Kuis_karyawan_model->getKuisAktif($hari_ini, $hari_ke);
+        $data['kuesioner_terjawab'] = $this->Kuis_karyawan_model->getKuisUser($hari_ini, $hari_ke);
+
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
