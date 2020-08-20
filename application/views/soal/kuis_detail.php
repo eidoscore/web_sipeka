@@ -30,7 +30,7 @@
 
             <?= $this->session->flashdata('message'); ?>
 
-            <a href="" class="btn btn-primary mb-3" data-toggle="modal" data-target="#newkuis">Add Kuis</a>
+            <a href="" class="btn btn-primary mb-3" data-toggle="modal" data-target="#newkuis">Add Soal</a>
             <table class="table table-hover" id="table1">
                 <thead>
                     <tr>

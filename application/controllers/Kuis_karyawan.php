@@ -40,7 +40,9 @@ class Kuis_karyawan extends CI_Controller
         $data['kuesioner'] = $this->db->get_where('tbl_quesioner', ['id' => $id])->row_array();
 
         $data['soal'] = $this->Soal_model->getDetailKuis($id);
-git add 
+
+        $total_soal = $this->input->post('total_soal');
+        $this->form_validation->set_rules('id', 'id', 'required');
 
         if ($this->form_validation->run() == false) {
 
@@ -70,7 +72,7 @@ git add
                 $this->Kuis_karyawan_model->tambahDetailJawaban($x);
             }
 
-            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">New Submenu Added</div>');
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Jawaban Added</div>');
             redirect('kuis_karyawan');
         }
     }

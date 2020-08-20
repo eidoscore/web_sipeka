@@ -19,7 +19,7 @@
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Id Soal</th>
+                        <th scope="col">Id Jawaban</th>
                         <th scope="col">Deadline</th>
                         <th scope="col">Soal</th>
                         <th scope="col">Status</th>
@@ -31,16 +31,12 @@
                     <?php foreach ($kuesioner as $ka) : ?>
                         <tr>
                             <th scope="row"><?= $i++; ?></th>
-                            <td><?= $ka->id_kuesioner ?></td>
-                            <td><?= $ka->tanggal_kuesioner ?></td>
+                            <td><?= $ka->id ?></td>
+                            <td><?= $ka->tanggal ?></td>
                             <td><?= $ka->keterangan ?></td>
-                            <?php if ($ka->email == null) { ?>
-                                <td>Belum di Jawab</td>
-                            <?php } else { ?>
-                                <td>Sudah di Jawab</td>
-                            <?php } ?>
+                            <td>Belum di Nilai</td>
                             <td>
-                                <a href="<?= site_url('penilaian/detail/') . $ka->id_kuesioner; ?>" class="badge badge-success">Nilai</a>
+                                <a href="<?= site_url('penilaian/TampilJawaban/') . $ka->id; ?>" class="badge badge-success">Nilai</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>

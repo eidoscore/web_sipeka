@@ -35,7 +35,7 @@
                             <td><?= $k->no_hp; ?></td>
                             <td><?= $k->jabatan; ?></td>
                             <td>
-                                <a href="<?= base_url('penilaian/detail/') . $k->id; ?>" class="badge badge-primary">Detail</a>
+                                <a href="<?= base_url('penilaian/Detail_Kuesioner/') . str_replace('@', '-', $k->email); ?>" class="badge badge-primary">Detail</a>
                                 <a href="<?= base_url('penilian/hapus/') . $k->id; ?>" class="badge badge-danger" onclick="return confirm('Yakin.?');">Delete</a>
                             </td>
                         </tr>

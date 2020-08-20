@@ -72,7 +72,7 @@ class Karyawan extends CI_Controller
 
             $this->Auth_model->tambah_user($data_user);
             $this->Karyawan_model->tambahKaryawan($data_karyawan);
-            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">New Submenu Added</div>');
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">New Karyawan Added</div>');
             redirect('karyawan');
         }
     }
@@ -120,7 +120,7 @@ class Karyawan extends CI_Controller
 
             $this->Karyawan_model->editUser($this->input->post('id'), $data_user);
             $this->Karyawan_model->editKaryawan($this->input->post('id'), $data_karyawan);
-            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">New Karyawan Added</div>');
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Karyawan Edited</div>');
             redirect('karyawan');
         }
     }

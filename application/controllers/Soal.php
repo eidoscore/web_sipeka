@@ -160,6 +160,7 @@ class Soal extends CI_Controller
     public function hapuskuis($id)
     {
         $this->Soal_model->hapusKuis($id);
+        $this->Soal_model->hapusDetailKuis($id);
         $this->session->set_flashdata('flash', 'DiHapus');
         redirect('soal/kuesioner');
     }
@@ -174,7 +175,7 @@ class Soal extends CI_Controller
         $data['list_kuis'] = $this->Soal_model->getDetailKuis($id);
 
 
-        $data['soal'] = $this->Soal_model->getSoal();
+        $data['soal'] = $this->Soal_model->getSoalnotActive($id);
 
         // $data['kuis_detail'] = $this->Soal_model->getDetailKuis($id);
 

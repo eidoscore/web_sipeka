@@ -41,10 +41,16 @@ class Soal_model extends CI_Model
         $this->db->where('id', $id);
         $this->db->delete('tbl_quesioner');
     }
+    public function hapusDetailKuis($id)
+    {
+        $this->db->from('tbl_kuis_detail');
+        $this->db->where('id_kuis', $id);
+        $this->db->delete('tbl_kuis_detail');
+    }
 
     public function getDetailKuis($id)
     {
-        $this->db->select('tbl_kuis_detail.*, tbl_soal.*');
+        $this->db->select('tbl_kuis_detail.*, tbl_soal.id as id_soal2 ,tbl_soal.*');
         $this->db->from('tbl_kuis_detail');
         $this->db->join('tbl_soal', 'tbl_kuis_detail.id_soal = tbl_soal.id_soal');
         $this->db->where('tbl_kuis_detail.id_kuis', $id);
@@ -56,5 +62,9 @@ class Soal_model extends CI_Model
         $this->db->insert('tbl_kuis_detail', $data);
     }
 
-    
+    public function getSoalnotActive($id_kuis)
+    {
+        $this->db->select('tbl_soal.*')->from('tbl_soal')->where('id_soal not in (select id_soal from tbl_kuis_detail where tbl_kuis_detail.id_kuis=' . $id_kuis . ')');
+        return $this->db->get()->result_array();
+}
 }
