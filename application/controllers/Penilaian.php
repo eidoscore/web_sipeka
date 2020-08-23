@@ -62,7 +62,7 @@ class Penilaian extends CI_Controller
 
         $this->form_validation->set_rules('id_penilaian', 'Id_penilaian', 'required');
 
-        $this->form_validation->set_rules('nilai', 'Nilai', 'required');
+        $this->form_validation->set_rules('bulan', 'Nilai', 'required');
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
@@ -81,6 +81,35 @@ class Penilaian extends CI_Controller
 
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Penilaian Added</div>');
             redirect('penilaian/');
+        }
+    }
+
+    public function best_karyawan()
+    {
+        $data['title'] = 'Karyawan Terbaik';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        // $bulan      = date('m');
+        // $tahun      = date('Y');
+        // $data['karyawan_terbaik'] = $this->Penilaian_model->getKaryawanTerbaik($bulan, $tahun);
+
+        $this->form_validation->set_rules('bulan', 'Bulan', 'required');
+
+        if ($this->form_validation->run() == false) {
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+            $this->load->view('penilaian/best_karyawan', $data);
+            $this->load->view('templates/footer');
+        } else {
+            $bulan      = $this->input->post('bulan');
+            $tahun      = $this->input->post('tahun');
+
+            $data['karyawan_terbaik'] = $this->Penilaian_model->getKaryawanTerbaik($bulan, $tahun);
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+            $this->load->view('penilaian/best_karyawan', $data);
+            $this->load->view('templates/footer');
         }
     }
 }

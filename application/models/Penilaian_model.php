@@ -43,4 +43,19 @@ class Penilaian_model extends CI_Model
     {
         $this->db->insert('tbl_penilaian', $data_nilai);
     }
+
+    public function getKaryawanTerbaik($bulan, $tahun)
+    {
+        $this->db->select('SUM(tbl_penilaian.nilai) AS total_nilai, tbl_karyawan.*,user.*, tbl_jawaban.email')
+            ->from('tbl_quesioner')
+            ->join('tbl_jawaban', 'tbl_jawaban.id_kuis=tbl_quesioner.id', 'left')
+            ->join('tbl_penilaian', 'tbl_penilaian.id_jawaban=tbl_jawaban.id', 'left')
+            ->join('user', 'user.email=tbl_jawaban.email')
+            ->join('tbl_karyawan', 'tbl_karyawan.id=user.id')
+            ->where("MONTH(tbl_quesioner.tanggal) = '$bulan' AND YEAR(tbl_quesioner.tanggal) = '$tahun'")
+            ->group_by("tbl_jawaban.email")
+            ->order_by('total_nilai', 'DESC')
+            ->limit(1);
+        return $this->db->get()->result();
+    }
 }
