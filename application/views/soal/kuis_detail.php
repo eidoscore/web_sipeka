@@ -42,7 +42,6 @@
                         <th scope="col">#</th>
                         <th scope="col">id Kuis</th>
                         <th scope="col">Id Soal</th>
-                        <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -53,12 +52,12 @@
                             <td><?= $lk->id_kuis; ?></td>
                             <td><?= $lk->soal; ?></td>
                             <td>
-                                <a href="<?php base_url(); ?>hapusdetailsoal/<?php echo $lk->id; ?>" class="badge badge-danger" onclick="return confirm('Yakin.?');">Delete</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
             </table>
+
         </div>
     </div>
 

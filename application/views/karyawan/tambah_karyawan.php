@@ -13,29 +13,30 @@
                     <div class="form-group row">
                         <div class="col-6">
                             <label for="nama">Nama</label>
-                            <input type="text" class="form-control" id="nama" name="nama">
+                            <input type="text" class="form-control" id="nama" name="nama" value="<?= set_value('nama'); ?>">
                         </div>
                         <div class="col-6">
                             <label for="email">Email address</label>
-                            <input type="email" class="form-control" id="email" name="email">
+                            <input type="email" class="form-control" id="email" name="email" value="<?= set_value('email'); ?>">
+                            <?= form_error('email', '<small class="text-danger pl-3">', '</small>'); ?>
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <div class="col-6">
                             <label for="nip">NIP Karyawan</label>
-                            <input type="text" class="form-control" id="nip" name="nip">
+                            <input type="text" class="form-control" id="nip" name="nip" value="<?= set_value('nip'); ?>">
                         </div>
                         <div class="col-6">
                             <label for="telepon">No Telepon</label>
-                            <input type="text" class="form-control" id="telepon" name="telepon">
+                            <input type="text" class="form-control" id="telepon" name="telepon" value="<?= set_value('telepon'); ?>">
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <div class="col-6">
                             <label for="jabatan">Jabatan</label>
-                            <input type="text" class="form-control" id="jabatan" name="jabatan">
+                            <input type="text" class="form-control" id="jabatan" name="jabatan" value="<?= set_value('jabatan'); ?>">
                         </div>
                         <div class="form-group col-md-6">
                             <label class="col-form-label">Tahun Masuk</label>
@@ -76,12 +77,13 @@
                     </div>
                     <div class="form-group">
                         <label for="alamat">Alamat</label>
-                        <textarea type="text" class="form-control col-6" id="alamat" name="alamat"></textarea>
+                        <textarea type="text" class="form-control col-6" id="alamat" name="alamat" value="<?= set_value('alamat'); ?>"></textarea>
                     </div>
                     <div class="form-group row">
                         <div class="col-6">
                             <label for="password1">Password</label>
                             <input type="password" class="form-control" id="password1" name="password1">
+                            <?= form_error('password1', '<small class="text-danger pl-3">', '</small>'); ?>
                         </div>
                         <div class="col-6">
                             <label for="password2">Ulangi Password</label>

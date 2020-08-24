@@ -44,8 +44,8 @@
                     <div class="form-group row mt-5">
                         <div class="col-6">
 
-                            <label for="nilai">Beri Nilai <strong>Range (1-25)</strong></label>
-                            <input type="text" class="form-control" id="nilai" name="nilai">
+                            <label for="nilai"> Nilai <strong>Range (1-25)</strong></label>
+                            <input type="text" class="form-control" id="nilai" name="nilai" readonly>
                         </div>
                     </div>
 

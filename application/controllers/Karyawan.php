@@ -35,6 +35,14 @@ class Karyawan extends CI_Controller
         $data['menu'] = $this->db->get('user_menu')->result_array();
 
         $this->form_validation->set_rules('nip', 'nip', 'required');
+        $this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique[user.email]', [
+            'is_unique' => 'Email has already registered!!'
+        ]);
+        $this->form_validation->set_rules('password1', 'Password', 'required|trim|min_length[5]|matches[password2]', [
+            'matches' => 'password dont match!',
+            'min_length' => 'password too short!'
+        ]);
+        $this->form_validation->set_rules('password2', 'Password', 'required|trim|matches[password1]');
 
         if ($this->form_validation->run() == false) {
             $data['title'] = 'Tambah Karyawan';

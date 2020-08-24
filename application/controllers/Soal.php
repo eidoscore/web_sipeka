@@ -174,10 +174,7 @@ class Soal extends CI_Controller
 
         $data['list_kuis'] = $this->Soal_model->getDetailKuis($id);
 
-
         $data['soal'] = $this->Soal_model->getSoalnotActive($id);
-
-        // $data['kuis_detail'] = $this->Soal_model->getDetailKuis($id);
 
         $this->form_validation->set_rules('id_soal', 'id_soal', 'required');
 
@@ -201,4 +198,12 @@ class Soal extends CI_Controller
             redirect('soal/detail_kuis/' . $id);
         }
     }
+
+    // public function hapuskuisdetail($id)
+    // {
+    //     $this->Soal_model->hapusDetailKuis($id);
+
+    //     $this->session->set_flashdata('flash', 'DiHapus');
+    //     redirect('soal/kuesioner/' . $id);
+    // }
 }
